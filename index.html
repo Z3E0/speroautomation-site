@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Spero - AI automation for the routine work in your business</title>
+<meta name="description" content="Spero sets up AI automations for the routine work in your business: answering leads, handling documents, following up, reporting. You get the time back.">
+<link rel="canonical" href="https://speroautomation.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://speroautomation.com/">
+<meta property="og:title" content="Spero - Work that runs itself.">
+<meta property="og:description" content="Spero sets up AI automations for the routine work in your business: answering leads, handling documents, following up, reporting. You get the time back.">
+<meta name="theme-color" content="#EEF0F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232038E8'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF9A3D'/%3E%3C/svg%3E">
+<!--
+  SPERO: simple one-page site, modern design.
+
+  Search this file for PLACEHOLDER to find what is still to fill in.
+
+    1. Wordmark (nav and footer): swap for your logo
+    2. Automations and process: draft copy, edit to match what you offer
+    3. Contact: the Web3Forms access key
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  /* Layout: a blueprint sheet. One cobalt panel opens the page with the growth loop drawn on it,
+     pale paper carries the list of automations, and a second cobalt panel closes with the form. */
+  color-scheme:light;
+
+  /* Colour: each one has a single job */
+  --paper:#EEF0F4;                     /* page ground */
+  --paper-deep:#E1E5ED;                /* recessed panel */
+  --paper-veil:rgba(238,240,244,.86);  /* sticky nav */
+  --sheet:#FAFBFD;                     /* raised surface: form */
+  --white:#FFFFFF;
+  --ink:#0C1230;                       /* text */
+  --ink-soft:#4B5273;                  /* secondary text */
+  --rule:rgba(12,18,48,.16);
+  --blue:#2038E8;                      /* brand, actions, annotations */
+  --blue-deep:#182AAC;                 /* inset on blue, hover */
+  --on-blue:#F4F6FF;
+  --on-blue-soft:rgba(244,246,255,.84);
+  --on-blue-rule:rgba(244,246,255,.3);
+  --on-blue-grid:rgba(244,246,255,.09);
+  --on-blue-trace:rgba(244,246,255,.26);
+  --signal:#FF9A3D;                    /* accent: the loop's marker and the headline's last word */
+
+  /* Roles: components read these, panels re-point them */
+  --ground:var(--paper);
+  --fg:var(--ink);
+  --fg-soft:var(--ink-soft);
+  --mark:var(--blue);
+  --line:var(--rule);
+
+  /* Type */
+  --font-display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --step--1:.8125rem;
+  --step-0:1.0625rem;
+  --step-1:clamp(1.125rem,1.05rem + .4vw,1.3125rem);
+  --step-2:clamp(1.5rem,1.25rem + 1vw,2rem);
+  --step-3:clamp(2rem,1.3rem + 3vw,3.75rem);
+  --step-4:clamp(2.75rem,1rem + 6vw,5.5rem);
+
+  /* Space */
+  --gutter:clamp(16px,4vw,40px);
+  --maxw:1360px;
+  --radius:clamp(20px,3vw,32px);
+  --pad:clamp(24px,5vw,64px);
+  --ease:cubic-bezier(.25,.46,.45,.94);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:96px}
+body{
+  margin:0;background:var(--paper);color:var(--fg);
+  font:400 var(--step-0)/1.55 var(--font-body);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+p{text-wrap:pretty}
+::selection{background:var(--blue);color:var(--on-blue)}
+:focus-visible{outline:2px solid var(--mark);outline-offset:3px}
+
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance}
+h1{font-size:var(--step-4);font-weight:700;line-height:.94;letter-spacing:-.04em}
+h2{font-size:var(--step-3);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em}
+.accent{color:var(--signal)}
+
+/* ---------- shared pieces ---------- */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:clamp(56px,8vw,120px)}
+.head{display:grid;gap:20px;max-width:54rem}
+.lede{font-size:var(--step-1);line-height:1.45;color:var(--fg-soft);max-width:36em}
+
+.label{
+  display:flex;align-items:center;gap:.7em;
+  font:500 var(--step--1)/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mark);
+}
+.label::before{content:"";width:.55em;height:.55em;background:currentColor}
+
+.panel{border-radius:var(--radius);padding:var(--pad)}
+.panel--blue{
+  --ground:var(--blue);--fg:var(--on-blue);--fg-soft:var(--on-blue-soft);
+  --mark:var(--on-blue);--line:var(--on-blue-rule);
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--blue);color:var(--fg);
+}
+.panel--blue::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background-image:
+    linear-gradient(var(--on-blue-grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--on-blue-grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(120% 95% at 88% 8%,#000 0%,transparent 72%);
+  mask-image:radial-gradient(120% 95% at 88% 8%,#000 0%,transparent 72%);
+}
+.panel--deep{--ground:var(--paper-deep);background:var(--paper-deep)}
+.panel--hero{padding-block:clamp(32px,6vw,80px)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.6em;
+  padding:.9em 1.45em;border-radius:999px;border:1.5px solid transparent;
+  font:500 1rem/1 var(--font-body);text-decoration:none;cursor:pointer;
+  transition:transform .18s var(--ease),background-color .18s,border-color .18s,color .18s;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn .arr{transition:transform .18s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+.btn--sm{padding:.72em 1.15em;font-size:.94rem}
+.btn--ink{background:var(--ink);color:var(--paper)}
+.btn--ink:hover{background:var(--blue)}
+.btn--blue{background:var(--blue);color:var(--on-blue)}
+.btn--blue:hover{background:var(--blue-deep)}
+.btn--light{background:var(--on-blue);color:var(--ink)}
+.btn--light:hover{background:var(--white)}
+.btn--ghost{border-color:var(--line);color:var(--fg)}
+.btn--ghost:hover{border-color:var(--fg)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:var(--paper-veil);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.nav-in{display:flex;align-items:center;gap:28px;min-height:72px}
+.brand{
+  display:inline-flex;align-items:baseline;gap:.1em;
+  font:800 1.7rem/1 var(--font-display);letter-spacing:-.05em;text-decoration:none;
+}
+.brand i{width:.28em;height:.28em;border-radius:50%;background:var(--signal)}
+.nav-links{display:none;gap:30px;margin-left:auto}
+.nav-links a{font-size:.96rem;text-decoration:none;color:var(--fg-soft);padding:8px 0;transition:color .15s}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{margin-left:auto}
+@media (min-width:720px){
+  .nav-links{display:flex}
+  .nav-cta{margin-left:0}
+}
+
+/* ---------- hero ---------- */
+.hero{padding-top:8px}
+.hero-grid{display:grid;gap:clamp(32px,5vw,64px);align-items:center}
+.hero-copy{display:grid;gap:clamp(20px,2.4vw,32px);justify-items:start}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+@media (min-width:1180px){
+  .hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+}
+
+/* The growth loop: a marker circles the ring, each stage lights as it arrives,
+   and one more bar of the chart in the middle rises with every stage. */
+.loop{--side:196px;display:grid;place-items:center;min-width:0;padding-block:28px}
+.loop-stage{position:relative;width:min(100% - var(--side),400px);aspect-ratio:1}
+.loop-stage::before{content:"";position:absolute;inset:0;border:1.5px solid var(--on-blue-soft);border-radius:50%;opacity:.6}
+.loop-art{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.loop-bars{transform-box:fill-box;transform-origin:center}
+.loop-bar{fill:var(--on-blue-grid)}
+.loop-bar--live{
+  fill:var(--on-blue-trace);transform-box:fill-box;transform-origin:50% 100%;
+  animation:6.4s linear infinite;
+}
+.loop-bar--1{animation-name:rise1}
+.loop-bar--2{animation-name:rise2}
+.loop-bar--3{animation-name:rise3}
+.loop-bar--4{animation-name:rise4}
+.loop-arc{
+  fill:none;stroke:var(--signal);stroke-width:1.8;stroke-linecap:round;
+  stroke-dasharray:10 90;stroke-dashoffset:10;
+  animation:orbit 6.4s linear infinite;
+}
+.loop-steps{position:absolute;inset:0}
+.loop-step{
+  position:absolute;display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:var(--side);
+  padding:9px 15px;border:1px solid var(--on-blue-rule);border-radius:999px;
+  background:var(--blue-deep);color:var(--on-blue);
+  font:600 .9rem/1.2 var(--font-body);white-space:nowrap;
+  transform:translate(-50%,-50%);
+  animation:pill 6.4s linear infinite;animation-delay:calc(var(--i) * 1.6s);
+}
+.loop-step svg{
+  flex:none;width:18px;height:18px;fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
+}
+.loop-step--n{left:50%;top:0}
+.loop-step--e{left:100%;top:50%}
+.loop-step--s{left:50%;top:100%}
+.loop-step--w{left:0;top:50%}
+@keyframes orbit{to{stroke-dashoffset:-90}}
+@keyframes rise1{0%{transform:scaleY(0)}6%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@keyframes rise2{0%,25%{transform:scaleY(0)}31%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@keyframes rise3{0%,50%{transform:scaleY(0)}56%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@keyframes rise4{0%,75%{transform:scaleY(0)}81%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@keyframes pill{
+  0%{background:var(--blue-deep);color:var(--on-blue);border-color:var(--on-blue-rule)}
+  3%,22%{background:var(--on-blue);color:var(--ink);border-color:var(--on-blue)}
+  28%,100%{background:var(--blue-deep);color:var(--on-blue);border-color:var(--on-blue-rule)}
+}
+@media (max-width:520px){
+  .loop{--side:112px;padding-block:34px}
+  .loop-step{white-space:normal;text-align:center;padding:8px 12px;border-radius:14px;font-size:.82rem}
+  .loop-step svg{display:none}
+  .loop-bars{transform:scale(.62)}
+}
+
+/* ---------- automations ---------- */
+.split{display:grid;gap:clamp(32px,5vw,72px)}
+.split-head{display:grid;gap:20px;align-content:start}
+@media (min-width:1000px){
+  .split{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}
+  .split-head{position:sticky;top:112px;align-self:start}
+}
+.autos{counter-reset:n}
+.autos > li{display:grid;gap:18px 40px;padding-block:30px;border-top:1px solid var(--line);counter-increment:n}
+.autos > li > div::before{
+  content:counter(n,decimal-leading-zero);display:block;margin-bottom:14px;
+  font:500 var(--step--1)/1 var(--font-mono);letter-spacing:.08em;color:var(--mark);
+}
+.autos > li:last-child{border-bottom:1px solid var(--line)}
+.autos h3{margin-bottom:12px}
+.autos p{color:var(--fg-soft);max-width:34em}
+.flow{display:grid;gap:9px;align-content:start;font:400 .84rem/1.4 var(--font-mono)}
+.flow li{display:grid;grid-template-columns:1.1em minmax(0,1fr);gap:.7em}
+.flow li::before{content:"\2192";color:var(--mark)}
+.flow li:first-child::before{content:"\25CB"}
+@media (min-width:700px){
+  .autos > li{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
+  .flow{padding-top:8px}
+}
+
+/* ---------- process ---------- */
+.steps{display:grid;gap:44px 0;margin-top:clamp(40px,5vw,72px)}
+.steps li{
+  position:relative;display:grid;gap:12px;align-content:start;
+  padding:30px 32px 0 0;border-top:1.5px solid var(--fg);
+}
+.steps li::before{
+  content:"";position:absolute;left:0;top:-8px;width:14.5px;height:14.5px;border-radius:50%;
+  background:var(--ground);border:1.5px solid var(--fg);
+}
+.steps .num{font:500 var(--step--1)/1 var(--font-mono);letter-spacing:.08em;color:var(--mark)}
+.steps p{color:var(--fg-soft)}
+@media (min-width:860px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---------- contact ---------- */
+.contact{display:grid;gap:clamp(32px,5vw,72px)}
+.contact-copy{display:grid;gap:22px;align-content:start}
+.details{margin-top:10px}
+.details div{
+  display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:12px;align-items:baseline;
+  padding-block:13px;border-top:1px solid var(--line);
+}
+.details div:last-child{border-bottom:1px solid var(--line)}
+.details dt{font:500 .75rem/1.6 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-soft)}
+.details dd{min-width:0;overflow-wrap:anywhere}
+@media (max-width:520px){.details div{grid-template-columns:minmax(0,1fr);gap:2px}}
+.form{
+  --ground:var(--sheet);--fg:var(--ink);--fg-soft:var(--ink-soft);--mark:var(--blue);--line:var(--rule);
+  display:grid;gap:18px;padding:clamp(20px,3vw,34px);border-radius:20px;
+  background:var(--sheet);color:var(--fg);
+}
+.form-row{display:grid;gap:18px}
+.field{display:grid;gap:8px}
+.field label{font:500 .75rem/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-soft)}
+.field input,.field textarea{
+  width:100%;padding:13px 14px;border:1.5px solid transparent;border-radius:10px;
+  background:var(--paper);color:var(--ink);font:400 1rem/1.4 var(--font-body);
+  transition:border-color .15s,background-color .15s;
+}
+.field textarea{min-height:132px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-soft);opacity:.75}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:var(--white)}
+.form .btn{justify-self:start}
+.form-note{font-size:.9rem;line-height:1.5;color:var(--fg-soft)}
+.form-note:empty{display:none}
+@media (min-width:560px){.form-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){
+  .contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+}
+
+/* ---------- footer ---------- */
+.footer{display:grid;gap:28px;padding-block:clamp(40px,5vw,64px) 44px}
+.footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.96rem}
+.footer-links a{text-decoration:none;color:var(--fg-soft);transition:color .15s}
+.footer-links a:hover{color:var(--fg)}
+.fine{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;
+  padding-top:22px;border-top:1px solid var(--line);
+  font-size:.86rem;color:var(--fg-soft);
+}
+
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .loop-arc{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <!-- PLACEHOLDER 1: wordmark. Swap for your logo when you have one. -->
+    <a class="brand" href="#top" aria-label="Spero, back to top">spero<i aria-hidden="true"></i></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#automations">Automations</a>
+      <a href="#process">Process</a>
+    </nav>
+    <a class="btn btn--ink btn--sm nav-cta" href="#contact">Talk to us</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="wrap hero">
+    <div class="panel panel--blue panel--hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="label">AI Automation</p>
+          <h1>Work that runs <span class="accent">itself.</span></h1>
+          <p class="lede">Spero sets up AI automations for the routine work in your business: answering leads, handling documents, following up, reporting. You get the time back.</p>
+          <div class="cta-row">
+            <a class="btn btn--light" href="#contact">Talk to us <span class="arr" aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn--ghost" href="#automations">See the automations</a>
+          </div>
+        </div>
+
+        <figure class="loop" aria-label="A loop: automation saves time, so you serve more clients, serve them better, the business grows, and it goes round again.">
+          <div class="loop-stage">
+            <svg class="loop-art" viewBox="0 0 200 200" aria-hidden="true">
+              <g class="loop-bars">
+                <rect class="loop-bar" x="53" y="118" width="16" height="28" rx="2"/>
+                <rect class="loop-bar" x="79" y="102" width="16" height="44" rx="2"/>
+                <rect class="loop-bar" x="105" y="84" width="16" height="62" rx="2"/>
+                <rect class="loop-bar" x="131" y="62" width="16" height="84" rx="2"/>
+                <rect class="loop-bar loop-bar--live loop-bar--1" x="53" y="118" width="16" height="28" rx="2"/>
+                <rect class="loop-bar loop-bar--live loop-bar--2" x="79" y="102" width="16" height="44" rx="2"/>
+                <rect class="loop-bar loop-bar--live loop-bar--3" x="105" y="84" width="16" height="62" rx="2"/>
+                <rect class="loop-bar loop-bar--live loop-bar--4" x="131" y="62" width="16" height="84" rx="2"/>
+              </g>
+              <circle class="loop-arc" cx="100" cy="100" r="99.2" pathLength="100" transform="rotate(-90 100 100)"/>
+            </svg>
+            <ol class="loop-steps">
+              <li class="loop-step loop-step--n" style="--i:0">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                Saves time
+              </li>
+              <li class="loop-step loop-step--e" style="--i:1">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.2c2.2.3 3.6 1.8 4 4.3"/></svg>
+                Serve more clients
+              </li>
+              <li class="loop-step loop-step--s" style="--i:2">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5L12 16.6l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>
+                Serve clients better
+              </li>
+              <li class="loop-step loop-step--w" style="--i:3">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+                Business grows
+              </li>
+            </ol>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUTOMATIONS ============ -->
+  <!-- PLACEHOLDER 2: draft copy. Edit the five automations to match what Spero offers. -->
+  <section class="wrap section" id="automations">
+    <div class="split">
+      <div class="split-head">
+        <p class="label">Automations</p>
+        <h2>What we can automate for you.</h2>
+        <p class="lede">Each one is set up around the tools you already use and switched on one at a time.</p>
+      </div>
+      <ul class="autos">
+        <li>
+          <div>
+            <h3>Instant lead response</h3>
+            <p>Every new enquiry gets a reply in seconds.</p>
+          </div>
+          <ol class="flow">
+            <li>New enquiry</li>
+            <li>Instant reply</li>
+            <li>Call booked</li>
+          </ol>
+        </li>
+        <li>
+          <div>
+            <h3>Document processing</h3>
+            <p>Invoices and forms read, checked and filed for you.</p>
+          </div>
+          <ol class="flow">
+            <li>Document arrives</li>
+            <li>Details extracted</li>
+            <li>Saved to your system</li>
+          </ol>
+        </li>
+        <li>
+          <div>
+            <h3>Follow-up sequences</h3>
+            <p>Timed reminders, so no quote or call goes cold.</p>
+          </div>
+          <ol class="flow">
+            <li>Quote sent</li>
+            <li>Reminders on a schedule</li>
+            <li>Reply or close</li>
+          </ol>
+        </li>
+        <li>
+          <div>
+            <h3>Past customer outreach</h3>
+            <p>Personal messages that restart old conversations.</p>
+          </div>
+          <ol class="flow">
+            <li>Old contact list</li>
+            <li>Personal outreach</li>
+            <li>New conversations</li>
+          </ol>
+        </li>
+        <li>
+          <div>
+            <h3>Internal reporting</h3>
+            <p>Your weekly numbers, sent to you as one summary.</p>
+          </div>
+          <ol class="flow">
+            <li>Data from your tools</li>
+            <li>Weekly summary</li>
+            <li>In your inbox</li>
+          </ol>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="wrap" id="process">
+    <div class="panel panel--deep">
+      <div class="head">
+        <p class="label">Process</p>
+        <h2>How it works.</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="num">01</span>
+          <h3>Discovery</h3>
+          <p>Deeply understand your business context, systems and objectives.</p>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <h3>Build</h3>
+          <p>We set the automation up around your tools and test it on real cases.</p>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <h3>Run</h3>
+          <p>We switch it on, watch it, and adjust it as your business changes.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <!-- PLACEHOLDER 3: the Web3Forms access key (the hidden access_key field in the form). -->
+  <section class="wrap section" id="contact">
+    <div class="panel panel--blue contact">
+      <div class="contact-copy">
+        <p class="label">Contact</p>
+        <h2>Tell us what you'd like off your plate.</h2>
+        <p class="lede">Send a few lines about the work that eats your time. We'll reply with what we would automate first.</p>
+        <dl class="details">
+          <div><dt>Email</dt><dd><a href="mailto:hello@speroautomation.com">hello@speroautomation.com</a></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+6583374686">+65 8337 4686</a></dd></div>
+        </dl>
+      </div>
+
+      <!-- Web3Forms emails each message to hello@speroautomation.com. The access key is public by design. -->
+      <form class="form" id="contactForm" data-endpoint="https://api.web3forms.com/submit">
+        <input type="hidden" name="access_key" value="">
+        <input type="hidden" name="subject" value="New enquiry from speroautomation.com">
+        <input type="hidden" name="from_name" value="Spero website">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+        <div class="form-row">
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-company">Business</label>
+          <input id="cf-company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="cf-message">What would you like to automate?</label>
+          <textarea id="cf-message" name="message" placeholder="e.g. new enquiries wait hours for a reply when we're busy" required></textarea>
+        </div>
+        <button class="btn btn--blue" type="submit">Send message <span class="arr" aria-hidden="true">&rarr;</span></button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="wrap footer">
+  <div class="footer-top">
+    <a class="brand" href="#top" aria-label="Spero, back to top">spero<i aria-hidden="true"></i></a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#automations">Automations</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="fine">
+    <p>&copy; <span id="year">2026</span> BitBridgeLabs</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Contact form: posts to data-endpoint as JSON
+  const form = document.getElementById('contactForm');
+  const note = document.getElementById('formNote');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    note.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.dataset.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      if (!res.ok) throw new Error(res.status);
+      form.reset();
+      note.textContent = 'Message sent. We will reply by email.';
+    } catch {
+      note.textContent = "The message didn't send. Please try again, or email hello@speroautomation.com.";
+    }
+  });
+})();
+</script>
+</body>
+</html>
