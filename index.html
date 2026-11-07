@@ -101,13 +101,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .head{display:grid;gap:20px;max-width:54rem}
 .lede{font-size:var(--step-1);line-height:1.45;color:var(--fg-soft);max-width:36em}
 
-.label{
-  display:flex;align-items:center;gap:.7em;
-  font:500 var(--step--1)/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;
-  color:var(--mark);
-}
-.label::before{content:"";width:.55em;height:.55em;background:currentColor}
-
 .panel{border-radius:var(--radius);padding:var(--pad)}
 .panel--blue{
   --ground:var(--blue);--fg:var(--on-blue);--fg-soft:var(--on-blue-soft);
@@ -205,7 +198,9 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   background:var(--blue-deep);color:var(--on-blue);
   font:600 .9rem/1.2 var(--font-body);white-space:nowrap;
   transform:translate(-50%,-50%);
-  animation:pill 6.4s linear infinite;animation-delay:calc(var(--i) * 1.6s);
+  /* step-end: the colours switch at once. Fading text and background together
+     passed through a moment where both were the same lavender. */
+  animation:pill 6.4s step-end infinite;animation-delay:calc(var(--i) * 1.6s);
 }
 .loop-step svg{
   flex:none;width:18px;height:18px;fill:none;stroke:currentColor;
@@ -349,7 +344,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
     <div class="panel panel--blue panel--hero">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="label">AI Automation</p>
           <h1>Work that runs <span class="accent">itself.</span></h1>
           <p class="lede">Spero sets up AI automations for the routine work in your business: answering leads, handling documents, following up, reporting. You get the time back.</p>
           <div class="cta-row">
@@ -402,7 +396,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   <section class="wrap section" id="automations">
     <div class="split">
       <div class="split-head">
-        <p class="label">Automations</p>
         <h2>What we can automate for you.</h2>
         <p class="lede">Each one is set up around the tools you already use and switched on one at a time.</p>
       </div>
@@ -470,7 +463,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   <section class="wrap" id="process">
     <div class="panel panel--deep">
       <div class="head">
-        <p class="label">Process</p>
         <h2>How it works.</h2>
       </div>
       <ol class="steps">
@@ -497,7 +489,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   <section class="wrap section" id="contact">
     <div class="panel panel--blue contact">
       <div class="contact-copy">
-        <p class="label">Contact</p>
         <h2>Tell us what you'd like off your plate.</h2>
         <p class="lede">Send a few lines about the work that eats your time. We'll reply with what we would automate first.</p>
         <dl class="details">
