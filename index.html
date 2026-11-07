@@ -22,9 +22,7 @@
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 :root{
   /* Layout: a blueprint sheet. One cobalt panel opens the page with the growth loop drawn on it,
@@ -34,11 +32,14 @@
   /* Colour: each one has a single job */
   --paper:#EEF0F4;                     /* page ground */
   --paper-deep:#E1E5ED;                /* recessed panel */
-  --paper-veil:rgba(238,240,244,.86);  /* sticky nav */
+  --paper-veil:rgba(238,240,244,.94);  /* sticky nav: solid enough not to smear the blue panels */
   --sheet:#FAFBFD;                     /* raised surface: form */
   --white:#FFFFFF;
   --ink:#0C1230;                       /* text */
   --ink-soft:#4B5273;                  /* secondary text */
+  --ink-faint:#646A88;                 /* placeholder text */
+  --edge:#868CA6;                      /* form field outline */
+  --error:#B3261E;                     /* form error message */
   --rule:rgba(12,18,48,.16);
   --blue:#2038E8;                      /* brand, actions, annotations */
   --blue-deep:#182AAC;                 /* inset on blue, hover */
@@ -46,7 +47,7 @@
   --on-blue-soft:rgba(244,246,255,.84);
   --on-blue-rule:rgba(244,246,255,.3);
   --on-blue-grid:rgba(244,246,255,.09);
-  --on-blue-trace:rgba(244,246,255,.26);
+  --on-blue-trace:rgba(244,246,255,.45);
   --signal:#FF9A3D;                    /* accent: the loop's marker and the headline's last word */
 
   /* Roles: components read these, panels re-point them */
@@ -76,7 +77,8 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:96px}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-padding-top:96px}
+a,button{touch-action:manipulation}
 body{
   margin:0;background:var(--paper);color:var(--fg);
   font:400 var(--step-0)/1.55 var(--font-body);
@@ -96,7 +98,10 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .accent{color:var(--signal)}
 
 /* ---------- shared pieces ---------- */
-.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.wrap{
+  max-width:var(--maxw);margin-inline:auto;
+  padding-inline:max(var(--gutter),env(safe-area-inset-left,0px)) max(var(--gutter),env(safe-area-inset-right,0px));
+}
 .section{padding-block:clamp(56px,8vw,120px)}
 .head{display:grid;gap:20px;max-width:54rem}
 .lede{font-size:var(--step-1);line-height:1.45;color:var(--fg-soft);max-width:36em}
@@ -124,21 +129,31 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   display:inline-flex;align-items:center;gap:.6em;
   padding:.9em 1.45em;border-radius:999px;border:1.5px solid transparent;
   font:500 1rem/1 var(--font-body);text-decoration:none;cursor:pointer;
-  transition:transform .18s var(--ease),background-color .18s,border-color .18s,color .18s;
+  transition:transform .12s cubic-bezier(.23,1,.32,1),background-color .18s,border-color .18s,color .18s;
 }
-.btn:hover{transform:translateY(-1px)}
-.btn:active{transform:scale(.98)}
 .btn .arr{transition:transform .18s var(--ease)}
-.btn:hover .arr{transform:translateX(3px)}
 .btn--sm{padding:.72em 1.15em;font-size:.94rem}
 .btn--ink{background:var(--ink);color:var(--paper)}
-.btn--ink:hover{background:var(--blue)}
 .btn--blue{background:var(--blue);color:var(--on-blue)}
-.btn--blue:hover{background:var(--blue-deep)}
 .btn--light{background:var(--on-blue);color:var(--ink)}
-.btn--light:hover{background:var(--white)}
 .btn--ghost{border-color:var(--line);color:var(--fg)}
-.btn--ghost:hover{border-color:var(--fg)}
+/* Hover only where there is a real pointer: on touch a tap would leave the hover look stuck. */
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-1px)}
+  .btn:hover .arr{transform:translateX(3px)}
+  .btn--ink:hover{background:var(--blue)}
+  .btn--blue:hover{background:var(--blue-deep)}
+  .btn--light:hover{background:var(--white)}
+  .btn--ghost:hover{border-color:var(--fg)}
+  .nav-links a:hover,.footer-links a:hover{color:var(--fg)}
+}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.6;cursor:progress;transform:none}
+.nav-links a:active,.footer-links a:active,.details a:active,.brand:active{opacity:.6}
+@media (pointer:coarse){
+  .btn--sm{min-height:44px}
+  .footer-links a,.details dd a{display:inline-block;padding-block:10px;margin-block:-10px}
+}
 
 /* ---------- nav ---------- */
 .nav{
@@ -154,7 +169,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .brand i{width:.28em;height:.28em;border-radius:50%;background:var(--signal)}
 .nav-links{display:none;gap:30px;margin-left:auto}
 .nav-links a{font-size:.96rem;text-decoration:none;color:var(--fg-soft);padding:8px 0;transition:color .15s}
-.nav-links a:hover{color:var(--fg)}
 .nav-cta{margin-left:auto}
 @media (min-width:720px){
   .nav-links{display:flex}
@@ -166,8 +180,13 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .hero-grid{display:grid;gap:clamp(32px,5vw,64px);align-items:center}
 .hero-copy{display:grid;gap:clamp(20px,2.4vw,32px);justify-items:start}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
-@media (min-width:1180px){
+@media (min-width:960px){
   .hero-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+}
+/* Side by side from 960px keeps the loop in the first screen on small laptops;
+   the headline steps down a little until the text column is wide enough. */
+@media (min-width:960px) and (max-width:1179px){
+  h1{font-size:clamp(3.5rem,1rem + 5vw,5.5rem)}
 }
 
 /* The growth loop: a marker circles the ring, each stage lights as it arrives,
@@ -180,7 +199,7 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .loop-bar{fill:var(--on-blue-grid)}
 .loop-bar--live{
   fill:var(--on-blue-trace);transform-box:fill-box;transform-origin:50% 100%;
-  animation:6.4s linear infinite;
+  animation:6.4s cubic-bezier(.23,1,.32,1) infinite;
 }
 .loop-bar--1{animation-name:rise1}
 .loop-bar--2{animation-name:rise2}
@@ -198,10 +217,23 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   background:var(--blue-deep);color:var(--on-blue);
   font:600 .9rem/1.2 var(--font-body);white-space:nowrap;
   transform:translate(-50%,-50%);
-  /* step-end: the colours switch at once. Fading text and background together
-     passed through a moment where both were the same lavender. */
-  animation:pill 6.4s step-end infinite;animation-delay:calc(var(--i) * 1.6s);
 }
+/* A lit copy of each pill is wiped in the direction the marker travels, so the stage
+   lights as the marker passes through it. Every pixel is either dark-on-white or
+   white-on-blue, so the label never loses contrast mid-change. */
+.loop-step .lit{
+  position:absolute;inset:-1px;display:inline-flex;align-items:center;justify-content:center;gap:inherit;
+  padding:inherit;border:1px solid var(--on-blue);border-radius:inherit;
+  background:var(--on-blue);color:var(--ink);
+  clip-path:var(--in);
+  animation:lit 6.4s cubic-bezier(.23,1,.32,1) infinite;
+  animation-delay:calc(var(--i) * 1.6s - .25s);
+}
+.loop-step--n{--in:inset(0 100% 0 0);--out:inset(0 0 0 100%)}
+.loop-step--e{--in:inset(0 0 100% 0);--out:inset(100% 0 0 0)}
+.loop-step--s{--in:inset(0 0 0 100%);--out:inset(0 100% 0 0)}
+.loop-step--w{--in:inset(100% 0 0 0);--out:inset(0 0 100% 0)}
+.loop.is-paused *{animation-play-state:paused}
 .loop-step svg{
   flex:none;width:18px;height:18px;fill:none;stroke:currentColor;
   stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
@@ -211,14 +243,15 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .loop-step--s{left:50%;top:100%}
 .loop-step--w{left:0;top:50%}
 @keyframes orbit{to{stroke-dashoffset:-90}}
-@keyframes rise1{0%{transform:scaleY(0)}6%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
-@keyframes rise2{0%,25%{transform:scaleY(0)}31%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
-@keyframes rise3{0%,50%{transform:scaleY(0)}56%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
-@keyframes rise4{0%,75%{transform:scaleY(0)}81%,96%{transform:scaleY(1)}100%{transform:scaleY(0)}}
-@keyframes pill{
-  0%{background:var(--blue-deep);color:var(--on-blue);border-color:var(--on-blue-rule)}
-  3%,22%{background:var(--on-blue);color:var(--ink);border-color:var(--on-blue)}
-  28%,100%{background:var(--blue-deep);color:var(--on-blue);border-color:var(--on-blue-rule)}
+/* Bars fade out at the end of the lap rather than shrinking, so "Business grows" never shows a fall. */
+@keyframes rise1{0%{transform:scaleY(0);opacity:1}6%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes rise2{0%,25%{transform:scaleY(0);opacity:1}31%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes rise3{0%,50%{transform:scaleY(0);opacity:1}56%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes rise4{0%,75%{transform:scaleY(0);opacity:1}81%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes lit{
+  0%{clip-path:var(--in)}
+  8%,25%{clip-path:inset(0)}
+  33%,100%{clip-path:var(--out)}
 }
 @media (max-width:520px){
   .loop{--side:112px;padding-block:34px}
@@ -234,12 +267,7 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   .split{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}
   .split-head{position:sticky;top:112px;align-self:start}
 }
-.autos{counter-reset:n}
-.autos > li{display:grid;gap:18px 40px;padding-block:30px;border-top:1px solid var(--line);counter-increment:n}
-.autos > li > div::before{
-  content:counter(n,decimal-leading-zero);display:block;margin-bottom:14px;
-  font:500 var(--step--1)/1 var(--font-mono);letter-spacing:.08em;color:var(--mark);
-}
+.autos > li{display:grid;gap:18px 40px;padding-block:30px;border-top:1px solid var(--line)}
 .autos > li:last-child{border-bottom:1px solid var(--line)}
 .autos h3{margin-bottom:12px}
 .autos p{color:var(--fg-soft);max-width:34em}
@@ -265,6 +293,7 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .steps .num{font:500 var(--step--1)/1 var(--font-mono);letter-spacing:.08em;color:var(--mark)}
 .steps p{color:var(--fg-soft)}
 @media (min-width:860px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:859px){.steps li{padding-right:0}}
 
 /* ---------- contact ---------- */
 .contact{display:grid;gap:clamp(32px,5vw,72px)}
@@ -275,7 +304,7 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
   padding-block:13px;border-top:1px solid var(--line);
 }
 .details div:last-child{border-bottom:1px solid var(--line)}
-.details dt{font:500 .75rem/1.6 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-soft)}
+.details dt{font:500 .9375rem/1.3 var(--font-body);color:var(--fg-soft)}
 .details dd{min-width:0;overflow-wrap:anywhere}
 @media (max-width:520px){.details div{grid-template-columns:minmax(0,1fr);gap:2px}}
 .form{
@@ -285,18 +314,22 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 }
 .form-row{display:grid;gap:18px}
 .field{display:grid;gap:8px}
-.field label{font:500 .75rem/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-soft)}
+.field label{font:500 .9375rem/1.3 var(--font-body);color:var(--fg)}
+.field label .opt{font-weight:400;color:var(--fg-soft)}
 .field input,.field textarea{
-  width:100%;padding:13px 14px;border:1.5px solid transparent;border-radius:10px;
+  width:100%;padding:13px 14px;border:1.5px solid var(--edge);border-radius:10px;
   background:var(--paper);color:var(--ink);font:400 1rem/1.4 var(--font-body);
   transition:border-color .15s,background-color .15s;
 }
 .field textarea{min-height:132px;resize:vertical}
-.field input::placeholder,.field textarea::placeholder{color:var(--ink-soft);opacity:.75}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-faint);opacity:1}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:var(--white)}
 .form .btn{justify-self:start}
 .form-note{font-size:.9rem;line-height:1.5;color:var(--fg-soft)}
 .form-note:empty{display:none}
+.form-note[data-state=ok]{color:var(--ink);font-weight:500}
+.form-note[data-state=error]{color:var(--error);font-weight:500}
+.form-note a{color:inherit}
 @media (min-width:560px){.form-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1000px){
   .contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
@@ -307,7 +340,6 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 .footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px}
 .footer-links{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.96rem}
 .footer-links a{text-decoration:none;color:var(--fg-soft);transition:color .15s}
-.footer-links a:hover{color:var(--fg)}
 .fine{
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;
   padding-top:22px;border-top:1px solid var(--line);
@@ -371,18 +403,22 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
               <li class="loop-step loop-step--n" style="--i:0">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
                 Saves time
+                <span class="lit" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Saves time</span>
               </li>
               <li class="loop-step loop-step--e" style="--i:1">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.2c2.2.3 3.6 1.8 4 4.3"/></svg>
                 Serve more clients
+                <span class="lit" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14.2c2.2.3 3.6 1.8 4 4.3"/></svg>Serve more clients</span>
               </li>
               <li class="loop-step loop-step--s" style="--i:2">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5L12 16.6l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>
                 Serve clients better
+                <span class="lit" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5L12 16.6l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>Serve clients better</span>
               </li>
               <li class="loop-step loop-step--w" style="--i:3">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
                 Business grows
+                <span class="lit" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Business grows</span>
               </li>
             </ol>
           </div>
@@ -469,7 +505,7 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
         <li>
           <span class="num">01</span>
           <h3>Discovery</h3>
-          <p>Deeply understand your business context, systems and objectives.</p>
+          <p>We learn how your business runs today: where enquiries come from, which tools you use and where the hours go.</p>
         </li>
         <li>
           <span class="num">02</span>
@@ -514,11 +550,11 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
           </div>
         </div>
         <div class="field">
-          <label for="cf-company">Business</label>
+          <label for="cf-company">Business name <span class="opt">(optional)</span></label>
           <input id="cf-company" name="company" type="text" autocomplete="organization">
         </div>
         <div class="field">
-          <label for="cf-message">What would you like to automate?</label>
+          <label for="cf-message">What work eats your time?</label>
           <textarea id="cf-message" name="message" placeholder="e.g. new enquiries wait hours for a reply when we're busy" required></textarea>
         </div>
         <button class="btn btn--blue" type="submit">Send message <span class="arr" aria-hidden="true">&rarr;</span></button>
@@ -548,11 +584,26 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
 (() => {
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Contact form: posts to data-endpoint as JSON
+  // Lets :active styles show on iOS taps.
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
+  // The growth loop pauses while it is off screen.
+  const loop = document.querySelector('.loop');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => loop.classList.toggle('is-paused', !entry.isIntersecting)).observe(loop);
+  }
+
+  // Contact form: posts to data-endpoint as JSON. The button is disabled while
+  // sending so a double tap cannot send the same enquiry twice.
   const form = document.getElementById('contactForm');
   const note = document.getElementById('formNote');
+  const btn = form.querySelector('[type=submit]');
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    if (btn.disabled) return;
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    note.dataset.state = '';
     note.textContent = 'Sending…';
     try {
       const res = await fetch(form.dataset.endpoint, {
@@ -562,9 +613,14 @@ h3{font-size:var(--step-2);font-weight:600;line-height:1.1;letter-spacing:-.02em
       });
       if (!res.ok) throw new Error(res.status);
       form.reset();
+      note.dataset.state = 'ok';
       note.textContent = 'Message sent. We will reply by email.';
     } catch {
-      note.textContent = "The message didn't send. Please try again, or email hello@speroautomation.com.";
+      note.dataset.state = 'error';
+      note.innerHTML = 'The message didn’t send. Please try again, or email <a href="mailto:hello@speroautomation.com">hello@speroautomation.com</a>.';
+    } finally {
+      btn.disabled = false;
+      btn.removeAttribute('aria-busy');
     }
   });
 })();
