@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Delete your data - Spero</title>
+<meta name="description" content="How to have Spero Automations delete the personal data it holds about you, and how a business disconnects its WhatsApp from Spero.">
+<link rel="canonical" href="https://speroautomation.com/data-deletion/">
+<meta name="theme-color" content="#EEF0F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232038E8'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF9A3D'/%3E%3C/svg%3E">
+<!--
+  Spero's data deletion instructions. Meta asks for this page's address (App settings > Basic > Data deletion
+  instructions URL). Keep it in step with ../privacy/: the 30 days here are the ones promised there.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  /* The website's palette, so the page reads as Spero's. */
+  --paper:#EEF0F4;
+  --paper-deep:#E1E5ED;
+  --sheet:#FAFBFD;
+  --ink:#0C1230;
+  --ink-soft:#4B5273;
+  --rule:rgba(12,18,48,.16);
+  --rule-soft:rgba(12,18,48,.08);
+  --blue:#2038E8;
+  --blue-deep:#182AAC;
+  --on-blue:#F4F6FF;
+  --on-blue-soft:rgba(244,246,255,.84);
+  --on-blue-rule:rgba(244,246,255,.3);
+  --on-blue-grid:rgba(244,246,255,.09);
+  --signal:#FF9A3D;
+  --font-display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,32px);
+  --sheet-pad:clamp(22px,5.5vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ol,ul,dl,dd{margin:0}
+ol,ul{padding:0;list-style:none}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
+p{text-wrap:pretty}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+::selection{background:var(--blue);color:var(--on-blue)}
+
+/* ---------- bar ---------- */
+.bar{
+  position:sticky;top:0;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  max-width:920px;margin-inline:auto;
+  padding:14px max(var(--gutter),env(safe-area-inset-right,0px)) 14px max(var(--gutter),env(safe-area-inset-left,0px));
+  background:rgba(238,240,244,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+.bar-actions{display:flex;gap:8px}
+.brand{display:inline-flex;align-items:baseline;gap:.1em;font:800 1.45rem/1 var(--font-display);letter-spacing:-.05em;text-decoration:none}
+.brand i{width:.28em;height:.28em;border-radius:50%;background:var(--signal)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.72em 1.15em;min-height:44px;
+  border-radius:999px;border:1.5px solid transparent;background:var(--ink);color:var(--paper);
+  font:500 .94rem/1 var(--font-body);text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:background-color .18s,border-color .18s,transform .12s cubic-bezier(.23,1,.32,1);
+}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn--light{background:var(--on-blue);color:var(--ink);padding:.9em 1.45em;font-size:1rem}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--blue)}
+  .btn--ghost:hover{background:transparent;border-color:var(--ink)}
+  .btn--light:hover{background:#fff}
+  .footer-links a:hover{color:var(--ink)}
+}
+.btn:active{transform:scale(.97)}
+@media (max-width:480px){.btn--ghost{display:none}}
+
+/* ---------- the document ---------- */
+.doc{
+  display:grid;gap:20px;max-width:920px;margin-inline:auto;
+  padding:4px max(var(--gutter),env(safe-area-inset-right,0px)) 56px max(var(--gutter),env(safe-area-inset-left,0px));
+}
+.sheet{border-radius:20px;background:var(--sheet);padding:var(--sheet-pad);box-shadow:0 1px 2px rgba(12,18,48,.06)}
+
+.cover{
+  position:relative;isolation:isolate;overflow:hidden;display:grid;gap:22px;
+  background:var(--blue);color:var(--on-blue);
+}
+.cover::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--on-blue-grid) 1px,transparent 1px),linear-gradient(90deg,var(--on-blue-grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(120% 95% at 88% 8%,#000 0%,transparent 72%);
+  mask-image:radial-gradient(120% 95% at 88% 8%,#000 0%,transparent 72%);
+}
+.tag{
+  justify-self:start;padding:7px 13px;border:1px solid var(--on-blue-rule);border-radius:999px;
+  font:500 .8rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap
+}
+.cover h1{font-size:clamp(2.4rem,1.3rem + 4.6vw,4.2rem);font-weight:700;line-height:.96;letter-spacing:-.04em}
+.cover h1 .accent{color:var(--signal)}
+.cover-sub{font-size:1.15rem;line-height:1.45;color:var(--on-blue-soft);max-width:34em}
+.cover-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.updated{font:500 .84rem/1.4 var(--font-mono);color:var(--on-blue-soft)}
+
+/* The request: what to put in the email */
+.ask{display:grid;gap:18px}
+.ask h2,.sec h2{display:flex;align-items:baseline;gap:14px;font-size:clamp(1.45rem,1.2rem + 1vw,1.85rem);font-weight:700;line-height:1.08;letter-spacing:-.025em}
+.steps{display:grid;gap:0;counter-reset:step;max-width:40em;border-top:1px solid var(--rule-soft)}
+.steps li{counter-increment:step;display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:12px;padding:14px 0;border-bottom:1px solid var(--rule-soft)}
+.steps li::before{content:counter(step,decimal-leading-zero);font:500 .85rem/1.85 var(--font-mono);color:var(--blue)}
+.mail{
+  display:grid;gap:2px;justify-self:start;max-width:100%;padding:16px 20px;border-radius:12px;background:var(--paper);
+  font:400 .95rem/1.5 var(--font-mono);overflow-wrap:anywhere
+}
+.mail b{font-weight:500;color:var(--ink-soft)}
+/* Phones: small enough that the "To:" line keeps the address on it */
+@media (max-width:480px){.mail{font-size:.8rem;padding:14px 16px}}
+.nowrap{white-space:nowrap}
+
+.body{display:grid}
+.sec{display:grid;gap:14px;padding-block:clamp(28px,4vw,40px);border-top:1px solid var(--rule)}
+.sec:first-child{margin-top:clamp(28px,4vw,40px)}
+.sec:last-child{padding-bottom:0}
+.sec p,.sec li{max-width:40em}
+.sec .soft{color:var(--ink-soft)}
+.list{display:grid;gap:8px}
+.list li{position:relative;padding-left:22px}
+/* A border, not a filled box: Chrome snaps borders to whole pixels, so every dash draws at the same weight */
+.list li::before{content:"";position:absolute;left:2px;top:.75em;width:10px;border-top:2px solid var(--blue)}
+
+/* ---------- footer ---------- */
+.footer{
+  display:grid;gap:24px;max-width:920px;margin-inline:auto;
+  padding:8px max(var(--gutter),env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(var(--gutter),env(safe-area-inset-left,0px));
+}
+.footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 40px}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.96rem}
+.footer-links a{text-decoration:none;color:var(--ink-soft);transition:color .15s}
+.footer-links a[aria-current]{color:var(--ink)}
+@media (pointer:coarse){.footer-links a{display:inline-block;padding-block:10px;margin-block:-10px}}
+.fine{padding-top:20px;border-top:1px solid var(--rule);font-size:.86rem;color:var(--ink-soft)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="../" aria-label="Spero, back to speroautomation.com">spero<i aria-hidden="true"></i></a>
+  <div class="bar-actions">
+    <a class="btn btn--ghost" href="../privacy/">Privacy policy</a>
+    <a class="btn" href="mailto:hello@speroautomation.com?subject=Delete%20my%20data">Email us</a>
+  </div>
+</header>
+
+<main class="doc">
+
+  <section class="sheet cover" aria-labelledby="title">
+    <p class="tag">Data deletion</p>
+    <h1 id="title">Delete your data with <span class="accent">one email.</span></h1>
+    <p class="cover-sub">How to have Spero delete the personal data it holds about you, and how a business disconnects its WhatsApp from Spero.</p>
+    <div class="cover-foot">
+      <a class="btn btn--light" href="mailto:hello@speroautomation.com?subject=Delete%20my%20data">Send a deletion request</a>
+      <p class="updated">Last updated 19 November 2026</p>
+    </div>
+  </section>
+
+  <article class="sheet">
+
+    <section class="ask" aria-labelledby="ask-h">
+      <h2 id="ask-h">How to ask</h2>
+      <ol class="steps">
+        <li><span>Email <a href="mailto:hello@speroautomation.com?subject=Delete%20my%20data">hello@speroautomation.com</a> with the subject "Delete my data".</span></li>
+        <li><span>Tell us the phone number or email address you used with us. If you messaged a business we work for, tell us its name too.</span></li>
+        <li><span>We may ask you to confirm from that number or address, so we never delete someone else's data by mistake.</span></li>
+      </ol>
+      <p class="mail" aria-label="Example request">
+        <span><b>To:</b> hello@speroautomation.com</span>
+        <span><b>Subject:</b> Delete my data</span>
+        <span><b>Message:</b> Please delete my data. I used +65 9123 4567.</span>
+      </p>
+    </section>
+
+    <div class="body">
+
+      <section class="sec" aria-labelledby="what-h">
+        <h2 id="what-h">What we delete</h2>
+        <p>Within 30 days of confirming your request, we delete:</p>
+        <ul class="list">
+          <li>your WhatsApp messages, our replies and anything our assistant remembers about you;</li>
+          <li>the lead details and bookings we hold about you;</li>
+          <li>messages you sent through our website, and your place on our email lists;</li>
+          <li>copies of your messages in our internal alerts.</li>
+        </ul>
+        <p>Copies in backups are deleted when those backups are deleted, and are not used for anything in the meantime. We email you when it is done.</p>
+        <p class="soft">We keep a record that you asked. If you asked us to stop messaging you, we also keep your number on a <span class="nowrap">do-not-contact</span> note, so we never message you again.</p>
+      </section>
+
+      <section class="sec" aria-labelledby="firm-h">
+        <h2 id="firm-h">If you messaged a business we work for</h2>
+        <p>That business keeps its own lead log in its own Google Sheet and is responsible for it. We delete what we hold, then pass your request to the business so it can delete its records. You can also ask the business directly.</p>
+      </section>
+
+      <section class="sec" aria-labelledby="fb-h">
+        <h2 id="fb-h">If you connected through Facebook</h2>
+        <p>If you used Facebook to connect a WhatsApp Business account to Spero, you can remove our app yourself: in Facebook, open <strong>Settings and privacy</strong>, then <strong>Settings</strong>, then <strong>Business integrations</strong>, find <strong>Spero Automations</strong> and choose <strong>Remove</strong>.</p>
+        <p>Removing the app stops any new data reaching us. To delete what we already hold, send us the email above as well.</p>
+      </section>
+
+      <section class="sec" aria-labelledby="biz-h">
+        <h2 id="biz-h">If your business wants to disconnect</h2>
+        <p>Email us and we disconnect our system from your WhatsApp Business account. Within 30 days we delete your access tokens and the conversations and data we hold for you. Your WhatsApp Business account, your number and your Google Sheet stay yours, and nothing in them is deleted unless you ask.</p>
+        <p class="soft">You can also remove Spero's access yourself in your Meta business settings at any time.</p>
+      </section>
+
+      <section class="sec" aria-labelledby="more-h">
+        <h2 id="more-h">More about your data</h2>
+        <p>What we collect, why, and who else sees it are in our <a href="../privacy/">privacy policy</a>.</p>
+      </section>
+
+    </div>
+  </article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <a class="brand" href="../" aria-label="Spero, back to speroautomation.com">spero<i aria-hidden="true"></i></a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="../">Home</a>
+      <a href="../privacy/">Privacy policy</a>
+      <a href="./" aria-current="page">Delete your data</a>
+      <a href="mailto:hello@speroautomation.com">hello@speroautomation.com</a>
+    </nav>
+  </div>
+  <p class="fine">&copy; 2026 BitBridgeLabs</p>
+</footer>
+
+</body>
+</html>

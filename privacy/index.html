@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy policy - Spero</title>
+<meta name="description" content="How Spero Automations collects, uses, shares and deletes personal data, on its website, its WhatsApp number and the WhatsApp assistant it runs for businesses.">
+<link rel="canonical" href="https://speroautomation.com/privacy/">
+<meta name="theme-color" content="#EEF0F4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232038E8'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF9A3D'/%3E%3C/svg%3E">
+<!--
+  Spero's privacy policy. Meta's App Review asks for this page's address (App settings > Basic > Privacy policy URL).
+  It describes what the systems in infra/n8n really do. When one of them changes what it collects, keeps or shares,
+  change this page and its "Last updated" date in the same session. The deletion page is ../data-deletion/.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  /* The website's palette, so the page reads as Spero's. */
+  --paper:#EEF0F4;
+  --paper-deep:#E1E5ED;
+  --sheet:#FAFBFD;
+  --ink:#0C1230;
+  --ink-soft:#4B5273;
+  --rule:rgba(12,18,48,.16);
+  --rule-soft:rgba(12,18,48,.08);
+  --blue:#2038E8;
+  --blue-deep:#182AAC;
+  --on-blue:#F4F6FF;
+  --on-blue-soft:rgba(244,246,255,.84);
+  --on-blue-rule:rgba(244,246,255,.3);
+  --on-blue-grid:rgba(244,246,255,.09);
+  --signal:#FF9A3D;
+  --font-display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,32px);
+  --sheet-pad:clamp(22px,5.5vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ol,ul,dl,dd{margin:0}
+ol,ul{padding:0;list-style:none}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
+p{text-wrap:pretty}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+::selection{background:var(--blue);color:var(--on-blue)}
+
+/* ---------- bar ---------- */
+.bar{
+  position:sticky;top:0;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  max-width:920px;margin-inline:auto;
+  padding:14px max(var(--gutter),env(safe-area-inset-right,0px)) 14px max(var(--gutter),env(safe-area-inset-left,0px));
+  background:rgba(238,240,244,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+.bar-actions{display:flex;gap:8px}
+.brand{display:inline-flex;align-items:baseline;gap:.1em;font:800 1.45rem/1 var(--font-display);letter-spacing:-.05em;text-decoration:none}
+.brand i{width:.28em;height:.28em;border-radius:50%;background:var(--signal)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.72em 1.15em;min-height:44px;
+  border-radius:999px;border:1.5px solid transparent;background:var(--ink);color:var(--paper);
+  font:500 .94rem/1 var(--font-body);text-decoration:none;white-space:nowrap;cursor:pointer;
+  transition:background-color .18s,border-color .18s,transform .12s cubic-bezier(.23,1,.32,1);
+}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--blue)}
+  .btn--ghost:hover{background:transparent;border-color:var(--ink)}
+  .footer-links a:hover,.toc a:hover{color:var(--ink)}
+}
+.btn:active{transform:scale(.97)}
+@media (max-width:480px){.btn--ghost{display:none}}
+
+/* ---------- the document ---------- */
+.doc{
+  display:grid;gap:20px;max-width:920px;margin-inline:auto;
+  padding:4px max(var(--gutter),env(safe-area-inset-right,0px)) 56px max(var(--gutter),env(safe-area-inset-left,0px));
+}
+.sheet{border-radius:20px;background:var(--sheet);padding:var(--sheet-pad);box-shadow:0 1px 2px rgba(12,18,48,.06)}
+
+.cover{
+  position:relative;isolation:isolate;overflow:hidden;display:grid;gap:22px;
+  background:var(--blue);color:var(--on-blue);
+}
+.cover::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--on-blue-grid) 1px,transparent 1px),linear-gradient(90deg,var(--on-blue-grid) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(120% 95% at 88% 8%,#000 0%,transparent 72%);
+  mask-image:radial-gradient(120% 95% at 88% 8%,#000 0%,transparent 72%);
+}
+.tag{
+  justify-self:start;padding:7px 13px;border:1px solid var(--on-blue-rule);border-radius:999px;
+  font:500 .8rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap
+}
+.cover h1{font-size:clamp(2.4rem,1.3rem + 4.6vw,4.2rem);font-weight:700;line-height:.96;letter-spacing:-.04em}
+.cover h1 .accent{color:var(--signal)}
+.cover-sub{font-size:1.15rem;line-height:1.45;color:var(--on-blue-soft);max-width:34em}
+.updated{font:500 .84rem/1.4 var(--font-mono);color:var(--on-blue-soft)}
+
+.short{display:grid;gap:16px;padding:clamp(20px,4vw,32px);border-radius:16px;background:var(--paper-deep)}
+.short h2{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.short ul{display:grid;gap:10px}
+.short li{position:relative;padding-left:28px}
+.short li::before{
+  content:"";position:absolute;left:2px;top:.45em;width:12px;height:12px;border-radius:50%;
+  background:var(--blue);box-shadow:inset 0 0 0 3.5px var(--paper-deep),0 0 0 1.5px var(--blue)
+}
+
+.toc{display:grid;gap:12px;margin-top:clamp(28px,4vw,40px)}
+.toc h2{font:500 .8rem/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.toc ol{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:2px 28px;counter-reset:toc}
+.toc li{counter-increment:toc}
+.toc a{
+  display:flex;gap:12px;padding:7px 0;text-decoration:none;color:var(--ink-soft);
+  border-bottom:1px solid var(--rule-soft);transition:color .15s
+}
+.toc a::before{content:counter(toc,decimal-leading-zero);font:500 .82rem/1.9 var(--font-mono);color:var(--blue)}
+
+.body{display:grid;counter-reset:sec}
+.sec{display:grid;gap:14px;padding-block:clamp(28px,4vw,40px);border-top:1px solid var(--rule);counter-increment:sec}
+/* The contents list already ends on a rule, so the first section draws none of its own */
+.sec:first-child{border-top:0}
+.sec:last-child{padding-bottom:0}
+.sec h2{display:flex;align-items:baseline;gap:14px;font-size:clamp(1.45rem,1.2rem + 1vw,1.85rem);font-weight:700;line-height:1.08;letter-spacing:-.025em}
+.sec h2::before{content:counter(sec,decimal-leading-zero);flex:none;font:500 .85rem/1 var(--font-mono);letter-spacing:0;color:var(--blue);transform:translateY(-.2em)}
+.sec h3{margin-top:8px;font-size:1.08rem;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.sec p,.sec li{max-width:40em}
+.sec .soft{color:var(--ink-soft)}
+.list{display:grid;gap:8px}
+.list li{position:relative;padding-left:22px}
+/* A border, not a filled box: Chrome snaps borders to whole pixels, so every dash draws at the same weight */
+.list li::before{content:"";position:absolute;left:2px;top:.75em;width:10px;border-top:2px solid var(--blue)}
+.nowrap{white-space:nowrap}
+
+/* Who we share with: a two-column list that stacks on phones */
+.parties{display:grid;border-top:1px solid var(--rule-soft);max-width:44em}
+.parties div{display:grid;grid-template-columns:minmax(0,13em) minmax(0,1fr);gap:4px 24px;padding:13px 0;border-bottom:1px solid var(--rule-soft)}
+.parties dt{font-weight:600}
+.parties dd{color:var(--ink-soft)}
+@media (max-width:560px){.parties div{grid-template-columns:minmax(0,1fr)}}
+
+.contact{display:grid;gap:4px;padding:18px 20px;border-left:3px solid var(--blue);background:var(--paper);border-radius:0 12px 12px 0;max-width:40em}
+.contact a{font-weight:600}
+
+/* ---------- footer ---------- */
+.footer{
+  display:grid;gap:24px;max-width:920px;margin-inline:auto;
+  padding:8px max(var(--gutter),env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) max(var(--gutter),env(safe-area-inset-left,0px));
+}
+.footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 40px}
+.footer-links{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:.96rem}
+.footer-links a{text-decoration:none;color:var(--ink-soft);transition:color .15s}
+.footer-links a[aria-current]{color:var(--ink)}
+@media (pointer:coarse){.footer-links a{display:inline-block;padding-block:10px;margin-block:-10px}}
+.fine{padding-top:20px;border-top:1px solid var(--rule);font-size:.86rem;color:var(--ink-soft)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="../" aria-label="Spero, back to speroautomation.com">spero<i aria-hidden="true"></i></a>
+  <div class="bar-actions">
+    <a class="btn btn--ghost" href="../data-deletion/">Delete your data</a>
+    <a class="btn" href="mailto:hello@speroautomation.com?subject=Privacy%20question">Email us</a>
+  </div>
+</header>
+
+<main class="doc">
+
+  <section class="sheet cover" aria-labelledby="title">
+    <p class="tag">Privacy policy</p>
+    <h1 id="title">How Spero handles your <span class="accent">data.</span></h1>
+    <p class="cover-sub">What we collect on our website, on our WhatsApp number and in the WhatsApp assistant we run for businesses. What we do with it, who else sees it, and how to have it deleted.</p>
+    <p class="updated">Last updated 19 November 2026</p>
+  </section>
+
+  <article class="sheet">
+
+    <section class="short" aria-labelledby="short">
+      <h2 id="short">The short version</h2>
+      <ul>
+        <li>We collect only what we need to answer you, or to run the WhatsApp assistant for a business that hires us.</li>
+        <li>We never sell personal data, use it for advertising or use it to train AI models.</li>
+        <li>An AI assistant may answer WhatsApp messages. A person can take over at any time, and you can ask for one.</li>
+        <li>Chat history on our systems is deleted automatically after 30 days.</li>
+        <li>To see, correct or delete your data, email <a href="mailto:hello@speroautomation.com">hello@speroautomation.com</a>.</li>
+      </ul>
+    </section>
+
+    <nav class="toc" aria-labelledby="toc">
+      <h2 id="toc">Contents</h2>
+      <ol>
+        <li><a href="#who">Who we are</a></li>
+        <li><a href="#roles">Whose data, and who decides</a></li>
+        <li><a href="#collect">What we collect</a></li>
+        <li><a href="#use">How we use it</a></li>
+        <li><a href="#ai">Replies written by AI</a></li>
+        <li><a href="#share">Who else sees it</a></li>
+        <li><a href="#abroad">Data handled outside Singapore</a></li>
+        <li><a href="#keep">How long we keep it</a></li>
+        <li><a href="#protect">How we protect it</a></li>
+        <li><a href="#choices">Your choices</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ol>
+    </nav>
+
+    <div class="body">
+
+      <section class="sec" id="who" aria-labelledby="who-h">
+        <h2 id="who-h">Who we are</h2>
+        <p>Spero Automations ("Spero", "we", "us") is a business of BitBridge Labs Private Limited, based in Singapore. We set up AI automations for businesses, mainly interior design firms. Our main service is an AI assistant on a firm's WhatsApp number that answers new enquiries, asks the questions the firm's designers need, books consultations and hands each lead to a designer.</p>
+        <p>This policy covers our website, speroautomation.com, our own WhatsApp number, <a class="nowrap" href="https://wa.me/6583374686">+65 8337 4686</a>, and the service we run for the businesses we work for.</p>
+      </section>
+
+      <section class="sec" id="roles" aria-labelledby="roles-h">
+        <h2 id="roles-h">Whose data, and who decides</h2>
+        <p><strong>When you deal with Spero itself</strong>, by using our website, emailing us or messaging our WhatsApp number, Spero decides how your data is used and is responsible for it.</p>
+        <p><strong>When you message a business we work for</strong>, that business is responsible for your data. We handle it only to provide our service to that business and on its instructions, as its data intermediary under Singapore's Personal Data Protection Act 2012 (PDPA). The business's own privacy policy applies as well, and requests about that data are best sent to the business first. If you send them to us, we pass them on.</p>
+      </section>
+
+      <section class="sec" id="collect" aria-labelledby="collect-h">
+        <h2 id="collect-h">What we collect</h2>
+
+        <h3>From our website</h3>
+        <p>Our website has no accounts, no cookies and no analytics. When you fill in one of its forms, we receive what you type: your name and email address and, depending on the form, your company, your message, the channel you would like us to test and the figures you set in the lead leak calculator.</p>
+        <p class="soft">As with any website, the services that deliver the page to you receive your IP address and browser details. For us those are GitHub, which hosts the site, and Google Fonts, which supplies its typefaces.</p>
+
+        <h3>When you message Spero on WhatsApp</h3>
+        <p>Your phone number, your WhatsApp profile name, the messages you send and the replies we send. If you send a photo, file, voice note or location, we record that you sent one and keep any caption. Our assistant does not open them.</p>
+
+        <h3>When a business connects its WhatsApp to Spero</h3>
+        <p>A business we work for connects its WhatsApp Business account to our system, either through Meta's sign-up flow or by giving us access in its own Meta business account. Meta then gives us:</p>
+        <ul class="list">
+          <li>the IDs of the business, its WhatsApp Business account and its phone numbers;</li>
+          <li>an access token that lets our system send and receive WhatsApp messages for the business;</li>
+          <li>the business's message templates;</li>
+          <li>the messages sent to and from its WhatsApp number.</li>
+        </ul>
+        <p>We also get access to the consultation calendar and the Google Sheet that the business chooses to share with us, to book consultations and to keep its lead log.</p>
+
+        <h3>When you message a business we work for</h3>
+        <p>If you message a firm that uses Spero, our system handles your phone number and WhatsApp profile name, your messages and the replies, the answers you give about your project (such as your home type, whether it is new or resale, when you get your keys and your rough budget), and any consultation you book, move or cancel.</p>
+      </section>
+
+      <section class="sec" id="use" aria-labelledby="use-h">
+        <h2 id="use-h">How we use it</h2>
+        <ul class="list">
+          <li>To reply to you, and to arrange a call or a consultation.</li>
+          <li>For a business we work for: to answer its enquiries, ask the questions its designers need, book, move or cancel consultations in its calendar, follow up when someone goes quiet (at most three times), alert its staff, and keep its lead log in its own Google Sheet.</li>
+          <li>To send what you asked for, such as our free guide or the monthly Keys Coming calendar.</li>
+          <li>To keep the service working and safe: fixing errors, stopping misuse and checking that the assistant follows the rules it is given.</li>
+        </ul>
+        <p>We do not sell personal data, use it for advertising or use it to train AI models. We never use one business's customer data for another business.</p>
+      </section>
+
+      <section class="sec" id="ai" aria-labelledby="ai-h">
+        <h2 id="ai-h">Replies written by AI</h2>
+        <p>Messages to our WhatsApp number, and to the numbers of businesses we work for, may be answered by an AI assistant built on Claude, a model made by Anthropic. It reads the conversation to write each reply and works within rules set by the business, such as what it may answer and which consultation times are open.</p>
+        <p>It says it is an AI assistant if you ask. When it cannot help, or when you ask for a person, it hands the chat to a person, who may read the conversation and reply instead.</p>
+      </section>
+
+      <section class="sec" id="share" aria-labelledby="share-h">
+        <h2 id="share-h">Who else sees it</h2>
+        <p>We run our automation software on servers we operate ourselves. We use these service providers, each only for the job listed:</p>
+        <dl class="parties">
+          <div><dt>Meta (WhatsApp Business Platform)</dt><dd>Delivers WhatsApp messages.</dd></div>
+          <div><dt>Anthropic</dt><dd>Writes the assistant's replies. Its commercial terms do not allow it to train its models on this data.</dd></div>
+          <div><dt>Google</dt><dd>Holds a business's lead log (Google Sheets) and consultation calendar (Google Calendar), both owned by that business.</dd></div>
+          <div><dt>Telegram</dt><dd>Carries our internal alerts about conversations that need a person, with a copy of the messages.</dd></div>
+          <div><dt>Web3Forms</dt><dd>Delivers messages from our website's forms to our email.</dd></div>
+          <div><dt>Namecheap</dt><dd>Hosts our email.</dd></div>
+          <div><dt>GitHub</dt><dd>Hosts our website.</dd></div>
+        </dl>
+        <p>A business we work for sees the conversations and lead details of its own customers. We may also disclose data when the law requires it.</p>
+      </section>
+
+      <section class="sec" id="abroad" aria-labelledby="abroad-h">
+        <h2 id="abroad-h">Data handled outside Singapore</h2>
+        <p>Some of these providers store or process data outside Singapore, including in the United States. When data leaves Singapore, we rely on providers whose terms require them to protect it to a standard comparable to the PDPA.</p>
+      </section>
+
+      <section class="sec" id="keep" aria-labelledby="keep-h">
+        <h2 id="keep-h">How long we keep it</h2>
+        <ul class="list">
+          <li><strong>WhatsApp conversations</strong> held by our system are deleted automatically after 30 days. If you have asked us to stop messaging you, or the assistant has been switched off for your number, we keep a note of that so we go on respecting it.</li>
+          <li><strong>A business's lead log</strong> is kept in that business's own Google Sheet, and the business decides how long to keep it.</li>
+          <li><strong>Website form messages</strong> stay in our email for as long as we need to reply and follow up, or until you ask us to delete them. You stay on the Keys Coming list until you unsubscribe.</li>
+          <li><strong>A business's access tokens and data</strong> are kept while we provide our service. Within 30 days of the business ending the service or disconnecting us, we delete its access tokens and the data we hold for it.</li>
+          <li><strong>Backups</strong>: data in a backup is deleted when that backup is deleted, and is not used for anything else in the meantime.</li>
+        </ul>
+      </section>
+
+      <section class="sec" id="protect" aria-labelledby="protect-h">
+        <h2 id="protect-h">How we protect it</h2>
+        <p>Access tokens and keys are stored encrypted. Our automation server is not open to the internet: only the addresses that receive incoming messages can be reached, through a relay. Only people at Spero who need to see conversations can see them, and we keep our software up to date with security fixes.</p>
+        <p>No system is perfectly secure. If a breach affects your data, we will notify everyone the law requires us to, including the business concerned and the Personal Data Protection Commission.</p>
+      </section>
+
+      <section class="sec" id="choices" aria-labelledby="choices-h">
+        <h2 id="choices-h">Your choices</h2>
+        <ul class="list">
+          <li><strong>Stop the assistant.</strong> On WhatsApp, ask it to stop messaging you, or ask for a person. It stops replying and hands the chat to a person.</li>
+          <li><strong>Unsubscribe</strong> from our emails by replying "unsubscribe".</li>
+          <li><strong>See or correct your data.</strong> Email us and we will reply within 30 days.</li>
+          <li><strong>Withdraw your consent</strong> to us using your data. We will tell you what that means for any service you have asked for.</li>
+          <li><strong>Delete your data.</strong> See <a href="../data-deletion/">Delete your data</a>.</li>
+        </ul>
+        <p class="soft">If your request is about data a business we work for is responsible for, we pass it to that business and help it act on it.</p>
+      </section>
+
+      <section class="sec" id="changes" aria-labelledby="changes-h">
+        <h2 id="changes-h">Changes to this policy</h2>
+        <p>When we change this policy, we update this page and the date at the top. If a change affects the businesses we work for, we tell them directly.</p>
+      </section>
+
+      <section class="sec" id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Contact us</h2>
+        <p>Questions, requests and complaints go to our Data Protection Officer:</p>
+        <p class="contact">
+          <span>Data Protection Officer, Spero Automations</span>
+          <a href="mailto:hello@speroautomation.com">hello@speroautomation.com</a>
+        </p>
+        <p class="soft">If you are not satisfied with our answer, you can contact Singapore's Personal Data Protection Commission at <a href="https://www.pdpc.gov.sg">pdpc.gov.sg</a>.</p>
+      </section>
+
+    </div>
+  </article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <a class="brand" href="../" aria-label="Spero, back to speroautomation.com">spero<i aria-hidden="true"></i></a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="../">Home</a>
+      <a href="./" aria-current="page">Privacy policy</a>
+      <a href="../data-deletion/">Delete your data</a>
+      <a href="mailto:hello@speroautomation.com">hello@speroautomation.com</a>
+    </nav>
+  </div>
+  <p class="fine">&copy; 2026 BitBridgeLabs</p>
+</footer>
+
+</body>
+</html>
