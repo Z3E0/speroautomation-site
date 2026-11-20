@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>You paid for that enquiry - Spero</title>
+<meta name="description" content="An AI assistant on your firm's own WhatsApp number replies to every new enquiry in under a minute, asks your questions and books the consult. Set up and run for you. Three founding firms.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="You paid for that enquiry. Don't let another firm book it.">
+<meta property="og:description" content="Every new WhatsApp enquiry answered in under a minute and booked into a consult. Three founding ID firms.">
+<meta name="theme-color" content="#2038E8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232038E8'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FF9A3D'/%3E%3C/svg%3E">
+<!--
+  Founding firm landing page. Draft by Claude, 2026-11-20. Not published, not reviewed by Timothy.
+  Built on sales/founding-offer.md and .agents/product-marketing.md.
+  Rules kept: no guarantee, no price in writing, no clients or results claimed, no long dashes.
+  Structure follows Hormozi: stop the scroll, name the cost, show proof, stack the value,
+  take the risk away, real scarcity, one ask repeated.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#EEF0F4;
+  --paper-deep:#E1E5ED;
+  --sheet:#FAFBFD;
+  --ink:#0C1230;
+  --ink-soft:#4B5273;
+  --rule:rgba(12,18,48,.16);
+  --blue:#2038E8;
+  --blue-deep:#182AAC;
+  --on-blue:#F4F6FF;
+  --on-blue-soft:rgba(244,246,255,.84);
+  --on-blue-rule:rgba(244,246,255,.3);
+  --on-blue-grid:rgba(244,246,255,.09);
+  --signal:#FF9A3D;
+
+  --font-display:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --step-0:1.0625rem;
+  --step-1:clamp(1.125rem,1.05rem + .4vw,1.3125rem);
+  --step-2:clamp(1.5rem,1.25rem + 1vw,2rem);
+  --step-3:clamp(2rem,1.3rem + 3vw,3.75rem);
+
+  --gutter:clamp(16px,4vw,40px);
+  --maxw:1200px;
+  --radius:clamp(20px,3vw,32px);
+  --pad:clamp(24px,5vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--step-0)/1.55 var(--font-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+p{text-wrap:pretty}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance}
+h2{font-size:var(--step-3);font-weight:700;line-height:1.02;letter-spacing:-.03em}
+h3{font-size:var(--step-2);font-weight:600;line-height:1.12;letter-spacing:-.02em}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.accent{color:var(--signal)}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:clamp(64px,9vw,128px)}
+.lede{font-size:var(--step-1);line-height:1.45;color:var(--ink-soft);max-width:36em}
+.kicker{font:500 .8125rem/1.3 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:1em 1.6em;border-radius:999px;font:600 1.0625rem/1 var(--font-body);text-decoration:none;transition:transform .12s cubic-bezier(.23,1,.32,1),background-color .18s}
+.btn:active{transform:scale(.97)}
+.btn--signal{background:var(--signal);color:var(--ink)}
+.btn--signal:hover{background:#FFAB5C}
+.btn--blue{background:var(--blue);color:var(--on-blue)}
+.btn--blue:hover{background:var(--blue-deep)}
+.btn .arr{transition:transform .18s}
+.btn:hover .arr{transform:translateX(3px)}
+.cta-note{font-size:.9375rem;color:inherit;opacity:.8}
+
+/* ---------- 1. The scroll stopper ---------- */
+.hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:100svh;display:flex;flex-direction:column;
+  background:var(--blue);color:var(--on-blue);
+}
+.hero > .wrap{width:100%}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--on-blue-grid) 1px,transparent 1px),linear-gradient(90deg,var(--on-blue-grid) 1px,transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(120% 90% at 85% 10%,#000 0%,transparent 75%);
+  mask-image:radial-gradient(120% 90% at 85% 10%,#000 0%,transparent 75%);
+}
+.hero__top{display:flex;justify-content:space-between;align-items:center;padding-block:20px}
+.logo{font:700 1.25rem/1 var(--font-display);letter-spacing:-.02em;text-decoration:none;display:inline-flex;align-items:center;gap:.45em}
+.logo i{width:.75em;height:.75em;border-radius:50%;background:var(--signal);display:inline-block}
+.hero__body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(24px,4vw,40px);padding-block:clamp(32px,6vw,72px)}
+.hero h1{
+  font-size:clamp(3rem,min(1rem + 11vw,13svh),10.5rem);
+  font-weight:800;line-height:.9;letter-spacing:-.04em;
+  max-width:11ch;
+}
+.hero h1 .line2{display:block;color:var(--signal)}
+.hero .lede{color:var(--on-blue-soft);max-width:34em}
+.hero .lede strong{color:var(--on-blue);font-weight:600}
+.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px}
+.hero__strip{border-top:1px solid var(--on-blue-rule);padding-block:18px;display:flex;flex-wrap:wrap;gap:8px 28px;font:500 .875rem/1.3 var(--font-mono);color:var(--on-blue-soft)}
+.hero__strip b{color:var(--on-blue);font-weight:500}
+
+/* ---------- 2. The cost ---------- */
+.cost{display:grid;gap:clamp(32px,5vw,56px)}
+.cost__grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.stat{background:var(--sheet);border:1px solid var(--rule);border-radius:20px;padding:28px;display:grid;gap:10px;align-content:start}
+.stat b{font:800 clamp(2.75rem,2rem + 3vw,4rem)/.95 var(--font-display);letter-spacing:-.04em;color:var(--blue)}
+.stat p{color:var(--ink-soft)}
+.fine{font-size:.875rem;color:var(--ink-soft)}
+
+/* ---------- 3. Proof ---------- */
+.proof{background:var(--ink);color:var(--on-blue)}
+.proof .wrap{display:grid;gap:clamp(40px,6vw,80px);align-items:center;grid-template-columns:1fr}
+@media (min-width:760px){.proof .wrap{grid-template-columns:1.1fr .9fr}}
+.proof h2 .accent{display:block}
+.proof .lede{color:var(--on-blue-soft)}
+.proof ul{display:grid;gap:14px;margin-top:28px}
+.proof li{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline}
+.proof li span{font:500 .875rem/1 var(--font-mono);color:var(--signal);min-width:4.2em}
+.phone{justify-self:center;width:min(100%,360px);border-radius:44px;overflow:hidden;box-shadow:0 0 0 10px #1B2140,0 30px 80px rgba(0,0,0,.45)}
+.phone img{display:block;width:100%;height:auto}
+.proof figcaption{margin-top:18px;text-align:center;font-size:.875rem;color:var(--on-blue-soft)}
+
+/* ---------- 4. The stack ---------- */
+.stack{display:grid;gap:clamp(32px,5vw,56px)}
+.stack__list{display:grid;gap:0;border-top:1px solid var(--rule)}
+.item{display:grid;gap:8px 32px;padding-block:28px;border-bottom:1px solid var(--rule);grid-template-columns:1fr}
+@media (min-width:880px){.item{grid-template-columns:3rem 1.2fr 1fr}}
+.item__n{font:500 .875rem/1.6 var(--font-mono);color:var(--blue)}
+.item h3{font-size:clamp(1.25rem,1.1rem + .6vw,1.625rem)}
+.item p{color:var(--ink-soft)}
+.item .kills{font-size:.9375rem;color:var(--ink)}
+.item .kills::before{content:"Kills: ";font:500 .75rem/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--signal);vertical-align:.1em}
+
+/* ---------- 5. Risk ---------- */
+.risk{background:var(--paper-deep)}
+.risk .wrap{display:grid;gap:clamp(32px,5vw,56px)}
+.risk__grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.risk__grid li{background:var(--sheet);border-radius:20px;padding:24px;display:grid;gap:8px}
+.risk__grid b{font:600 1.125rem/1.25 var(--font-display)}
+.risk__grid p{color:var(--ink-soft);font-size:.9688rem}
+
+
+/* ---------- Price ---------- */
+.price{display:grid;gap:clamp(32px,5vw,56px)}
+.plans{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:stretch}
+.plan{border-radius:24px;padding:clamp(24px,4vw,40px);display:grid;gap:20px;align-content:start;background:var(--sheet);border:1px solid var(--rule)}
+.plan--founding{background:var(--blue);color:var(--on-blue);border-color:var(--blue)}
+.plan__tag{font:500 .8125rem/1.3 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.plan--founding .plan__tag{color:var(--signal)}
+.plan__rows{display:grid;gap:14px}
+.plan__row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:1px solid var(--rule);padding-bottom:14px}
+.plan--founding .plan__row{border-color:var(--on-blue-rule)}
+.plan__row span{color:var(--ink-soft)}
+.plan--founding .plan__row span{color:var(--on-blue-soft)}
+.plan__row b{font:800 clamp(1.75rem,1.4rem + 1.4vw,2.5rem)/1 var(--font-display);letter-spacing:-.03em;white-space:nowrap}
+.plan__row s{font:500 1rem/1 var(--font-body);opacity:.6;margin-right:.4em}
+.plan__row b small{font:500 1rem/1 var(--font-body);letter-spacing:0;opacity:.8}
+.plan ul{display:grid;gap:8px}
+.plan li{padding-left:1.5em;position:relative}
+.plan li::before{content:"✓";position:absolute;left:0;font-weight:700;color:var(--blue)}
+.plan--founding li::before{color:var(--signal)}
+.price__note{font:600 clamp(1.25rem,1.1rem + .7vw,1.75rem)/1.25 var(--font-display);letter-spacing:-.015em;max-width:30em}
+
+/* ---------- 6. Scarcity ---------- */
+.seats{display:flex;gap:12px;flex-wrap:wrap}
+.seat{width:clamp(72px,12vw,104px);aspect-ratio:1;border-radius:20px;border:2px dashed var(--blue);display:grid;place-items:center;font:800 clamp(1.75rem,1.4rem + 1.5vw,2.5rem)/1 var(--font-display);color:var(--blue)}
+.fit{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.fit > div{display:grid;gap:14px;align-content:start}
+.fit h3{font-size:1.25rem}
+.fit li{padding-left:1.6em;position:relative;color:var(--ink-soft)}
+.fit li::before{position:absolute;left:0;font-weight:700}
+.fit .yes li::before{content:"✓";color:var(--blue)}
+.fit .no li::before{content:"✕";color:#B3261E}
+
+/* ---------- 7. FAQ ---------- */
+.faq{display:grid;gap:32px}
+.faq details{border-bottom:1px solid var(--rule);padding-block:20px}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font:600 clamp(1.125rem,1rem + .4vw,1.3125rem)/1.3 var(--font-display)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--blue);font-weight:400;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:12px;color:var(--ink-soft);max-width:44em}
+
+/* ---------- 8. Close ---------- */
+.close{background:var(--blue);color:var(--on-blue);text-align:left}
+.close .wrap{display:grid;gap:28px}
+.close h2{font-size:clamp(2.5rem,1rem + 6vw,6rem);font-weight:800;line-height:.92;letter-spacing:-.045em;max-width:12ch}
+.close .lede{color:var(--on-blue-soft)}
+footer{padding-block:28px;font-size:.875rem;color:var(--ink-soft)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a{text-decoration:none}
+
+
+/* ---------- Try-it row after each section ---------- */
+.try{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding-top:clamp(8px,2vw,16px)}
+.try__note{font-size:.9375rem;opacity:.75}
+.proof .try{grid-column:1/-1}
+
+
+/* ---------- Online signal and what happens next ---------- */
+.cta-meta{display:grid;gap:4px}
+.online{display:inline-flex;align-items:center;gap:8px;font:500 .875rem/1.3 var(--font-mono)}
+.online i{position:relative;width:8px;height:8px;border-radius:50%;background:#25D366;flex:none}
+.online i::after{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;animation:ping 2s cubic-bezier(0.23,1,0.32,1) infinite}
+@keyframes ping{from{transform:scale(1);opacity:.6}to{transform:scale(2.6);opacity:0}}
+.hero .cta-note,.close .cta-note{opacity:.8}
+
+/* ---------- Phone: a bar that stays under the thumb ---------- */
+.dock{display:none}
+@media (max-width:759px){
+  .dock{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    position:fixed;left:0;right:0;bottom:0;z-index:20;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:rgba(12,18,48,.94);color:var(--on-blue);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    transform:translateY(110%);
+    transition:transform 280ms var(--ease-out);
+  }
+  .dock.on{transform:none}
+  .dock .btn{padding:.8em 1.1em;font-size:.9688rem;white-space:nowrap;flex:none}
+  .dock .online{font-size:.75rem;color:var(--on-blue-soft)}
+}
+
+/* ---------- Motion ----------
+   Hero: CSS animation on load, so it plays smoothly while fonts and the page are still loading.
+   Below: each item rises into place once, the first time it scrolls into view.
+   Hidden states apply only when JS has run (html.js), so without JS everything is visible. */
+:root{--ease-out:cubic-bezier(0.23,1,0.32,1)}
+.hero h1 .line1,.hero h1 .line2{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.js .hero h1 .line1,.js .hero h1 .line2,.js .hero .lede,.js .hero__cta,.js .hero__strip{
+  animation:rise 800ms var(--ease-out) both;
+}
+.js .hero h1 .line2{animation-delay:140ms}
+.js .hero .lede{animation-delay:300ms}
+.js .hero__cta{animation-delay:400ms}
+.js .hero__strip{animation-delay:520ms}
+
+.js .rv{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out);
+  transition-delay:calc(var(--i,0) * 70ms);
+}
+.js .rv--phone{transform:translateY(48px) scale(.96)}
+.js .rv--seat{transform:scale(.9)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important}
+  .online i::after{animation:none}
+  .dock{transition:none}
+  .js .hero h1 .line1,.js .hero h1 .line2,.js .hero .lede,.js .hero__cta,.js .hero__strip{animation-name:fade;animation-duration:300ms}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .js .rv,.js .rv--phone,.js .rv--seat{transform:none;transition:opacity 300ms ease !important;transition-delay:0s !important}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<!-- 1. Stop the scroll -->
+<header class="hero">
+  <div class="wrap hero__top">
+    <a class="logo" href="https://speroautomation.com/"><i></i>Spero</a>
+    <a class="btn btn--signal" style="padding:.7em 1.2em;font-size:.9375rem" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test it free</a>
+  </div>
+  <div class="wrap hero__body">
+    <h1><span class="line1">You paid for that enquiry.</span> <span class="line2">Another firm booked it.</span></h1>
+    <p class="lede">An AI assistant on <strong>your own WhatsApp number</strong> replies to every new enquiry in under a minute, asks your questions and <strong>books the consult</strong>. Day or night. We set it up and run it. You show up to the meeting.</p>
+    <div class="hero__cta">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="cta-note">Opens WhatsApp with a message ready. Tap send. No forms, no sales call.</span></div>
+    </div>
+  </div>
+  <div class="wrap hero__strip">
+    <span><b style="color:var(--signal)">S$0 setup</b> for 3 founding firms</span>
+    <span><b>&lt; 1 min</b> first reply, any hour</span>
+    <span><b>EN / 中文</b> replies</span>
+    <span><b>Your number</b>, your WhatsApp Business app keeps working</span>
+  </div>
+</header>
+
+<main>
+
+<!-- 2. Name the cost -->
+<section class="section">
+  <div class="wrap cost">
+    <div style="display:grid;gap:20px;max-width:54rem">
+      <p class="kicker">The leak</p>
+      <h2>The homeowner who went quiet didn't lose interest. Someone else answered first.</h2>
+      <p class="lede">You already pay for enquiries: Qanvast, ads, your website, referrals. The money is spent the moment they message. What happens in the next hour decides who gets the consult.</p>
+    </div>
+    <ul class="cost__grid">
+      <li class="stat"><b>Up to 5</b><p>firms can get the same Qanvast request. The homeowner talks to whoever answers.</p></li>
+      <li class="stat"><b>~21x</b><p>more likely to qualify a lead when you reply within 5 minutes instead of 30, in an MIT study of web leads.</p></li>
+      <li class="stat"><b>10pm</b><p>is when homeowners scroll and enquire. It's also when you're asleep, on site tomorrow, or with your family.</p></li>
+    </ul>
+    <p class="fine">Sources: Qanvast's own FAQ; Oldroyd, MIT / InsideSales lead response study (2007), US web leads.</p>
+    <div class="try">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="try__note">Free. See how fast it answers you.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Proof -->
+<section class="section proof">
+  <div class="wrap">
+    <div>
+      <p class="kicker" style="color:var(--signal)">Watch it work</p>
+      <h2 style="margin-top:20px">Enquiry at 12:12am. <span class="accent">Booked by 12:14am.</span></h2>
+      <p class="lede" style="margin-top:20px">A real chat from a real phone with our assistant, running as a demo firm. No one was typing on our side.</p>
+      <ul>
+        <li><span>00:12</span><p>Homeowner messages. The assistant replies in seconds.</p></li>
+        <li><span>00:13</span><p>It asks area, keys and budget, one at a time, like a person would.</p></li>
+        <li><span>00:14</span><p>The first slot doesn't suit. It offers others that are actually free.</p></li>
+        <li><span>00:14</span><p>Booked. The designer gets a summary. The homeowner gets a confirmation.</p></li>
+      </ul>
+    </div>
+    <figure>
+      <div class="phone"><img src="demo-chat.png" width="460" height="1000" alt="WhatsApp chat with Demo Interiors at 00:14. The assistant offers Sun 15 Nov at 11am or two weekday evenings, the homeowner replies okay can do 15, and the assistant confirms the booking at the Ubi showroom and asks for the floor plan." loading="lazy"></div>
+      <figcaption>Demo firm, made-up details. The replies are the assistant's own.</figcaption>
+    </figure>
+    <div class="try">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="try__note">Your turn. Message it and time the reply.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. The stack -->
+<section class="section">
+  <div class="wrap stack">
+    <div style="display:grid;gap:20px;max-width:54rem">
+      <p class="kicker">What you get</p>
+      <h2>Everything from first message to booked consult. Done for you.</h2>
+      <p class="lede">You don't learn new software. You approve your answers, we do the rest.</p>
+    </div>
+    <ol class="stack__list">
+      <li class="item"><span class="item__n">01</span><div><h3>Every enquiry answered in under a minute</h3><p>On your main WhatsApp number, any hour, in English or Chinese.</p></div><p class="kills">"We're on site, we can't reply fast."</p></li>
+      <li class="item"><span class="item__n">02</span><div><h3>Your qualifying questions, asked for you</h3><p>Property type, scope, budget, keys, location. One at a time, in your firm's tone.</p></div><p class="kills">"Half our consults are tyre-kickers."</p></li>
+      <li class="item"><span class="item__n">03</span><div><h3>Consults booked into your real calendar</h3><p>Only slots that are actually free. It moves and cancels under your rules too.</p></div><p class="kills">"Back-and-forth on timing kills it."</p></li>
+      <li class="item"><span class="item__n">04</span><div><h3>A lead summary to your designer</h3><p>Name, property, scope, budget, timeline and slot, the moment it's booked. Nothing else pings them.</p></div><p class="kills">"My team won't read another app."</p></li>
+      <li class="item"><span class="item__n">05</span><div><h3>Quiet leads followed up, 3 times</h3><p>Worded from the actual chat, then marked cold. Nobody has to remember.</p></div><p class="kills">"We forget to chase."</p></li>
+      <li class="item"><span class="item__n">06</span><div><h3>Your answers, written for you</h3><p>One 30-minute call plus a few past chats. We write the SOP, you approve it.</p></div><p class="kills">"I don't have time to set this up."</p></li>
+      <li class="item"><span class="item__n">07</span><div><h3>Tested on your own past enquiries first</h3><p>Before it goes live, you read how it would have answered them.</p></div><p class="kills">"What if it says something wrong?"</p></li>
+      <li class="item"><span class="item__n">08</span><div><h3>Your existing clients kept out</h3><p>Their numbers are switched off before go-live. Reply from your phone and it steps back from that chat.</p></div><p class="kills">"Will it message my current clients?"</p></li>
+      <li class="item"><span class="item__n">09</span><div><h3>Before and after numbers</h3><p>Your baseline first, then enquiries, consults and reply time weekly for 4 weeks, monthly after. Every lead logged in a spreadsheet you own.</p></div><p class="kills">"How will I know it's working?"</p></li>
+    </ol>
+    <div class="try">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="try__note">Ask it about anything on this list.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Take the risk away (no guarantee, plain terms) -->
+<section class="section risk">
+  <div class="wrap">
+    <div style="display:grid;gap:20px;max-width:54rem">
+      <p class="kicker">Your risk</p>
+      <h2>You see it working before you pay a cent.</h2>
+    </div>
+    <ul class="risk__grid">
+      <li><b>A demo under your firm's name</b><p>Before you pay anything, you message it yourself and watch it answer as your firm.</p></li>
+      <li><b>No setup fee</b><p>Founding firms pay S$0 to set up. Normally S$2,000.</p></li>
+      <li><b>Monthly starts at go-live</b><p>Not at signing. You don't pay to wait.</p></li>
+      <li><b>Everything stays yours</b><p>Your number, your WhatsApp account, your lead sheet. Leave and you keep it all.</p></li>
+    </ul>
+    <div class="try">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="try__note">Free to try, before you pay a cent.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5b. Price: anchor on the full price, then the founding rate -->
+<section class="section">
+  <div class="wrap price">
+    <div style="display:grid;gap:20px;max-width:54rem">
+      <p class="kicker">Price</p>
+      <h2>S$2,000 to set up. <span class="accent">Founding firms pay S$0.</span></h2>
+      <p class="lede">Same assistant, same setup work. The first three firms skip the setup fee and only pay monthly, from the day it goes live.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <p class="plan__tag">After the first three firms</p>
+        <div class="plan__rows">
+          <p class="plan__row"><span>Setup</span><b>S$2,000</b></p>
+          <p class="plan__row"><span>Monthly</span><b>S$385 <small>/ mo</small></b></p>
+        </div>
+        <ul>
+          <li>4 hours of changes and new answers each month</li>
+          <li>Extra features and connections at S$110 an hour</li>
+          <li>Plus your own AI usage, about S$30 to S$200 a month</li>
+        </ul>
+      </div>
+      <div class="plan plan--founding">
+        <p class="plan__tag">Founding firm · 3 places</p>
+        <div class="plan__rows">
+          <p class="plan__row"><span>Setup</span><b><s>S$2,000</s>S$0</b></p>
+          <p class="plan__row"><span>Monthly</span><b>S$385 <small>/ mo</small></b></p>
+        </div>
+        <ul>
+          <li>4 hours of changes and new answers each month</li>
+          <li>Extra features and connections at S$110 an hour</li>
+          <li>Plus your own AI usage, about S$30 to S$200 a month, billed to your own account</li>
+        </ul>
+      </div>
+    </div>
+    <p class="lede" style="color:var(--ink)"><b>S$385 a month is under 1% of a single S$40k renovation.</b></p>
+    <p class="price__note">AI usage grows with the number of homeowners who message you. If yours hits S$200, you're about to have the best month of your life.</p>
+    <div class="try">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="try__note">Ask it about the founding rate.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Real scarcity and who it's for -->
+<section class="section">
+  <div class="wrap" style="display:grid;gap:clamp(40px,6vw,72px)">
+    <div style="display:grid;gap:24px;max-width:54rem">
+      <p class="kicker">Founding firms</p>
+      <h2>3 firms. Then the founding rate closes.</h2>
+      <p class="lede">We're new, so we have no client results to show you yet. That's why the first three firms pay no setup fee. In return you share your numbers before and after, join a 15-minute check-in each week for the first month, and tell people if it worked. After the third firm, setup is S$2,000.</p>
+      <div class="seats" aria-label="3 founding places open"><span class="seat">1</span><span class="seat">2</span><span class="seat">3</span></div>
+    </div>
+    <div class="fit">
+      <div class="yes"><h3>This is for you if</h3><ul>
+        <li>You're a Singapore ID firm and most enquiries come in on WhatsApp</li>
+        <li>You get about 5 or more new enquiries a week</li>
+        <li>You'll spend 15 minutes a week with us for the first month</li>
+      </ul></div>
+      <div class="no"><h3>Not for you if</h3><ul>
+        <li>You have a sales team answering enquiries all day</li>
+        <li>You want it to quote prices to homeowners</li>
+      </ul></div>
+    </div>
+    <div class="try">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="try__note">Ask if a founding place is still open.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Objections -->
+<section class="section" style="padding-top:0">
+  <div class="wrap faq">
+    <h2>Questions owners ask</h2>
+    <div>
+      <details><summary>Will it quote prices?</summary><p>No. Pricing questions are moved to the consult, where your designer handles them.</p></details>
+      <details><summary>What if it gets asked something it doesn't know?</summary><p>It tells the homeowner it's checking with the team, stops, and sends you a "needs a person" message. It never makes things up.</p></details>
+      <details><summary>Do I lose my WhatsApp Business app?</summary><p>No. Same number, and the app keeps working beside it. Our own number runs both.</p></details>
+      <details><summary>How much is it?</summary><p>Founding firms: no setup fee, then S$385 a month with 4 hours of changes included, plus your own AI usage of about S$30 to S$200 a month. After the first three firms, setup is S$2,000. Extra features and connections are S$110 an hour.</p></details>
+      <details><summary>How long until it's live?</summary><p>We give you an estimate at kickoff, not a promise. It depends on WhatsApp's approvals and on how much your firm already has set up. Fast is within a week, slow can take a month. Either way, you don't pay until it's live.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 8. The one ask, again -->
+<section class="section close">
+  <div class="wrap">
+    <h2>Next enquiry comes in tonight. <span class="accent">Who answers it?</span></h2>
+    <p class="lede">Message our assistant now, at any hour, and watch how fast the reply comes. Ask it how it would work for your firm and whether one of the three places is still open.</p>
+    <div class="hero__cta">
+      <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener">Test the reply speed <span class="arr">→</span></a>
+      <div class="cta-meta"><span class="online"><i aria-hidden="true"></i>Online now · replies in seconds</span><span class="cta-note">Opens WhatsApp with a message ready. Tap send. No forms, no sales call.</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 BitBridgeLabs · Spero Automations</span>
+    <a href="https://speroautomation.com/privacy/">Privacy</a>
+  </div>
+</footer>
+
+<div class="dock" aria-hidden="true">
+  <span class="online"><i aria-hidden="true"></i>Online now</span>
+  <a class="btn btn--signal" href="https://wa.me/6583374686?text=Hi%2C%20I%20run%20an%20ID%20firm%20and%20want%20to%20try%20the%20assistant" target="_blank" rel="noopener" tabindex="-1">Test the reply speed <span class="arr">→</span></a>
+</div>
+
+<script>
+// Phone bar: shows once the hero is scrolled past, hides over the closing section and whenever a page button is in view.
+(function(){
+  var dock=document.querySelector('.dock');
+  if(!dock||!('IntersectionObserver' in window))return;
+  var heroOut=false,closeIn=false,tryIn=false;
+  function set(){
+    var on=heroOut&&!closeIn&&!tryIn;
+    dock.classList.toggle('on',on);
+    dock.setAttribute('aria-hidden',on?'false':'true');
+    dock.querySelector('a').tabIndex=on?0:-1;
+  }
+  new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;set()}).observe(document.querySelector('.hero__cta'));
+  new IntersectionObserver(function(e){closeIn=e[0].isIntersecting;set()}).observe(document.querySelector('.close'));
+  // Also step aside while one of the page's own buttons is on screen, so two never stack.
+  var seen=new Set();
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?seen.add(e.target):seen.delete(e.target)});tryIn=seen.size>0;set()});
+  document.querySelectorAll('.try').forEach(function(t){io.observe(t)});
+})();
+</script>
+
+<script>
+// Scroll reveal: each group's children rise in turn, once, when the group comes into view.
+(function(){
+  if(!('IntersectionObserver' in window)){document.documentElement.classList.remove('js');return}
+  var groups=[
+    'main .section > .wrap > div:first-child',   // kicker, heading, lede of each section
+    '.cost__grid','.plans','.proof ul','.stack__list','.risk__grid','.seats','.fit','.faq > div','.close .wrap'
+  ];
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  },{rootMargin:'0px 0px -12% 0px'});
+  groups.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(g){
+      Array.prototype.forEach.call(g.children,function(el,i){
+        el.classList.add('rv');
+        if(g.classList.contains('seats'))el.classList.add('rv--seat');
+        el.style.setProperty('--i',Math.min(i,6));
+        io.observe(el);
+      });
+    });
+  });
+  var phone=document.querySelector('.proof figure');
+  if(phone){phone.classList.add('rv','rv--phone');phone.style.setProperty('--i',2);io.observe(phone)}
+  document.querySelectorAll('.cost > .fine, .faq > h2, .price__note, .price > .lede, .try').forEach(function(el){el.classList.add('rv');io.observe(el)});
+})();
+</script>
+
+</body>
+</html>
